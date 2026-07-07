@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para mi amor ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      color: #4a1c2a;
+      overflow-x: hidden;
+    }
+
+    /* LOGIN */
+    #login {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 25px;
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: aparecer 1s ease;
+    }
+
+    .login-box h1 {
+      color: white;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+
+    .login-box p {
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .error {
+      color: white;
+      margin-top: 15px;
+      font-weight: bold;
+      display: none;
+    }
+
+    #contenido {
+      display: none;
+    }
+
+    /* GENERAL */
+    header {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px;
+      position: relative;
+    }
+
+    .hero {
+      background: rgba(255, 255, 255, 0.28);
+      padding: 45px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      backdrop-filter: blur(10px);
+      max-width: 760px;
+      animation: aparecer 1.5s ease;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #b3134f;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      background: #d6336c;
+      color: white;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #a61e4d;
+      transform: scale(1.05);
+    }
+
+    section {
+      padding: 70px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.3rem;
+      margin-bottom: 35px;
+      color: #9d174d;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.9);
+      padding: 35px;
+      border-radius: 24px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.13);
+      line-height: 1.8;
+      font-size: 1.15rem;
+    }
+
+    /* CONTADOR */
+    .contador {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+
+    .contador-box {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    .contador-box span {
+      display: block;
+      font-size: 2.5rem;
+      color: #d6336c;
+      font-weight: bold;
+    }
+
+    .contador-box small {
+      font-size: 1rem;
+      color: #6a1b35;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      display: grid;
+      gap: 25px;
+    }
+
+    .evento {
+      background: rgba(255,255,255,0.9);
+      padding: 25px;
+      border-left: 6px solid #d6336c;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.10);
+    }
+
+    .evento h3 {
+      color: #b3134f;
+      margin-bottom: 10px;
+    }
+
+    /* GALERÍA */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .galeria img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+      transition: 0.3s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.04);
+    }
+
+    /* JUEGO */
+    .juego {
+      text-align: center;
+    }
+
+    .pregunta {
+      font-size: 1.3rem;
+      color: #9d174d;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .opciones {
+      display: grid;
+      gap: 15px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .opciones button {
+      padding: 14px;
+      border: none;
+      border-radius: 18px;
+      background: #ffe3ec;
+      color: #7a1538;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    .opciones button:hover {
+      background: #f783ac;
+      color: white;
+    }
+
+    #resultadoJuego {
+      margin-top: 25px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #b3134f;
+    }
+
+    /* CARTA ANIMADA */
+    .carta-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 420px;
+    }
+
+    .sobre {
+      position: relative;
+      width: 320px;
+      height: 210px;
+      background: #d6336c;
+      border-radius: 0 0 20px 20px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: transform 0.4s;
+    }
+
+    .sobre:hover {
+      transform: scale(1.04);
+    }
+
+    .tapa {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 110px solid #ff8fab;
+      transform-origin: top;
+      transition: transform 0.8s ease;
+      z-index: 3;
+    }
+
+    .cuerpo-sobre {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: #d6336c;
+      border-radius: 0 0 20px 20px;
+      z-index: 2;
+    }
+
+    .carta-papel {
+      position: absolute;
+      left: 20px;
+      bottom: 15px;
+      width: 280px;
+      height: 170px;
+      background: #fff0f6;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      z-index: 1;
+      transition: all 1s ease;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+    }
+
+    .carta-papel h3 {
+      color: #b3134f;
+      margin-bottom: 10px;
+    }
+
+    .carta-papel p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .sobre.abierto .tapa {
+      transform: rotateX(180deg);
+    }
+
+    .sobre.abierto .carta-papel {
+      bottom: 160px;
+      height: 310px;
+      z-index: 4;
+    }
+
+    .indicacion {
+      text-align: center;
+      margin-top: 20px;
+      color: #7a1538;
+      font-weight: bold;
+    }
+
+    /* QR */
+    .qr-box {
+      text-align: center;
+    }
+
+    .qr-box img {
+      margin-top: 20px;
+      width: 220px;
+      height: 220px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.16);
+      background: white;
+      padding: 10px;
+    }
+
+    .qr-link {
+      margin-top: 20px;
+      word-break: break-all;
+      font-size: 0.95rem;
+      color: #7a1538;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: rgba(255,255,255,0.4);
+      font-size: 1rem;
+    }
+
+    .corazon {
+      position: fixed;
+      top: -20px;
+      color: #ff4d6d;
+      font-size: 24px;
+      animation: caer linear infinite;
+      z-index: -1;
+    }
+
+    .musica {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: white;
+      padding: 12px;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 20;
+    }
+
+    .musica button {
+      border: none;
+      background: #d6336c;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    @keyframes caer {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+      }
+
+      section {
+        padding: 50px 15px;
+      }
+
+      .sobre {
+        width: 280px;
+        height: 190px;
+      }
+
+      .tapa {
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-top: 100px solid #ff8fab;
+      }
+
+      .carta-papel {
+        width: 240px;
+        left: 20px;
+      }
+
+      .sobre.abierto .carta-papel {
+        bottom: 145px;
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <div id="login">
+    <div class="login-box">
+      <h1>Hola, mi amor ❤️</h1>
+      <p>
+        Esta página es solo para ti.  
+        Para entrar, escribe nuestra contraseña especial.
+      </p>
+
+      <input 
+        type="password" 
+        id="password" 
+        placeholder="Escribe la contraseña"
+        onkeypress="entrarConEnter(event)"
+      >
+
+      <button class="btn" onclick="verificarPassword()">Entrar</button>
+
+      <div class="error" id="errorLogin">
+        Contraseña incorrecta, mi amor. Inténtalo otra vez ❤️
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div id="contenido">
+
+    <div class="musica">
+      <button onclick="controlarMusica()">🎵 Música</button>
+    </div>
+
+    <audio id="musicaFondo" loop>
+      <source src="cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+      <div class="hero">
+        <h1>Para ti, mi amor ❤️</h1>
+        <p>
+          Hice esta página pensando en ti, porque quería regalarte algo diferente,
+          algo hecho con cariño, tiempo y un poquito de código.
+        </p>
+        <a href="#contador" class="btn">Empezar</a>
+      </div>
+    </header>
+
+    <!-- CONTADOR -->
+    <section id="contador">
+      <h2>Llevamos juntos...</h2>
+
+      <div class="contador">
+        <div class="contador-box">
+          <span id="dias">0</span>
+          <small>Días</small>
+        </div>
+
+        <div class="contador-box">
+          <span id="horas">0</span>
+          <small>Horas</small>
+        </div>
+
+        <div class="contador-box">
+          <span id="minutos">0</span>
+          <small>Minutos</small>
+        </div>
+
+        <div class="contador-box">
+          <span id="segundos">0</span>
+          <small>Segundos</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENSAJE -->
+    <section>
+      <h2>Un pequeño mensaje para ti</h2>
+      <div class="card">
+        <p>
+          Desde que llegaste a mi vida, muchas cosas se volvieron más bonitas.
+          Tu forma de ser, tu sonrisa y los momentos que compartimos significan mucho para mí.
+          Esta página es solo una pequeña forma de recordarte lo especial que eres para mí.
+        </p>
+      </div>
+    </section>
+
+    <!-- HISTORIA -->
+    <section>
+      <h2>Nuestra historia</h2>
+
+      <div class="timeline">
+        <div class="evento">
+          <h3>El día que nos conocimos</h3>
+          <p>
+            Ese dia me acosaste, yo solo comia mi pure y me quedaste viendo
+          </p>
+        </div>
+
+        <div class="evento">
+          <h3>Nuestro primer momento especial</h3>
+          <p>
+            Hay momentos que se quedan guardados en el corazón, y este fue uno de ellos.
+          </p>
+        </div>
+
+        <div class="evento">
+          <h3>Lo que más me gusta de ti</h3>
+          <p>
+            Me gusta tu manera de hacerme sentir tranquilo, feliz y acompañado.
+          </p>
+        </div>
+
+        <div class="evento">
+          <h3>Lo que quiero contigo</h3>
+          <p>
+            Quiero seguir compartiendo más días, más risas, más aventuras y más recuerdos contigo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section>
+      <h2>Momentos bonitos</h2>
+
+      <div class="galeria">
+        <img src="foto1.jpg" alt="Foto especial 1">
+        <img src="foto2.jpg" alt="Foto especial 2">
+        <img src="foto3.jpg" alt="Foto especial 3">
+      </div>
+    </section>
+
+    <!-- JUEGO -->
+    <section>
+      <h2>Un pequeño juego sobre nosotros</h2>
+
+      <div class="card juego">
+        <div class="pregunta" id="preguntaJuego">
+          Pregunta
+        </div>
+
+        <div class="opciones" id="opcionesJuego"></div>
+
+        <div id="resultadoJuego"></div>
+      </div>
+    </section>
+
+    <!-- CARTA ANIMADA -->
+    <section>
+      <h2>Una carta para ti</h2>
+
+      <div class="carta-container">
+        <div class="sobre" onclick="abrirCarta()">
+          <div class="tapa"></div>
+
+          <div class="carta-papel">
+            <h3>Mi amor ❤️</h3>
+            <p>
+              Tal vez esta carta esté hecha con código, pero cada palabra nace de mi corazón.
+              Gracias por estar en mi vida, por hacerme sonreír y por compartir momentos tan bonitos conmigo.
+              Te quiero muchísimo.
+            </p>
+          </div>
+
+          <div class="cuerpo-sobre"></div>
+        </div>
+      </div>
+
+      <p class="indicacion">Haz clic en el sobre para abrir la carta 💌</p>
+    </section>
+
+    <!-- QR -->
+    <section>
+      <h2>Tu regalo en QR</h2>
+
+      <div class="card qr-box">
+
+        <img id="qrImagen" src="" alt="Código QR">
+
+        <p class="qr-link" id="qrTexto"></p>
+      </div>
+    </section>
+
+    <footer>
+      Hecho con amor, café y muchas líneas de código ❤️
+    </footer>
+
+  </div>
+
+  <script>
+    /* =========================
+       CONFIGURACIÓN PRINCIPAL
+    ========================== */
+
+    // Cambia esta contraseña por una fecha, apodo o palabra especial.
+    const PASSWORD_ROMANTICA = "yuricopicopico";
+
+    // Cambia esta fecha por el día que iniciaron su relación.
+    // Formato: año, mes - 1, día, hora, minuto, segundo
+    // Ejemplo: 14 de febrero de 2024 = new Date(2024, 1, 14, 0, 0, 0)
+    const FECHA_INICIO = new Date(2025, 10, 10, 0, 0, 0);
+
+    // Cuando subas tu página, cambia este link por tu enlace real.
+    // Ejemplo: https://cesar.github.io/para-mi-novia/
+    const LINK_DE_LA_PAGINA = " https://cesyu10.github.io/Para-Yuri/";
+
+    /* =========================
+       LOGIN
+    ========================== */
+
+    function verificarPassword() {
+      const password = document.getElementById("password").value.trim().toLowerCase();
+      const error = document.getElementById("errorLogin");
+
+      if (password === PASSWORD_ROMANTICA.toLowerCase()) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("contenido").style.display = "block";
+        iniciarPagina();
+      } else {
+        error.style.display = "block";
+      }
+    }
+
+    function entrarConEnter(event) {
+      if (event.key === "Enter") {
+        verificarPassword();
+      }
+    }
+
+    /* =========================
+       INICIAR PÁGINA
+    ========================== */
+
+    function iniciarPagina() {
+      actualizarContador();
+      setInterval(actualizarContador, 1000);
+
+      mostrarPregunta();
+
+      generarQR();
+
+      setInterval(crearCorazon, 500);
+    }
+
+    /* =========================
+       CONTADOR
+    ========================== */
+
+    function actualizarContador() {
+      const ahora = new Date();
+      const diferencia = ahora - FECHA_INICIO;
+
+      const segundosTotales = Math.floor(diferencia / 1000);
+
+      const dias = Math.floor(segundosTotales / (60 * 60 * 24));
+      const horas = Math.floor((segundosTotales % (60 * 60 * 24)) / (60 * 60));
+      const minutos = Math.floor((segundosTotales % (60 * 60)) / 60);
+      const segundos = segundosTotales % 60;
+
+      document.getElementById("dias").textContent = dias;
+      document.getElementById("horas").textContent = horas;
+      document.getElementById("minutos").textContent = minutos;
+      document.getElementById("segundos").textContent = segundos;
+    }
+
+    /* =========================
+       JUEGO DE PREGUNTAS
+    ========================== */
+
+    const preguntas = [
+      {
+        pregunta: "¿Cuál es una de las cosas que más me gusta de ti?",
+        opciones: [
+          "Tu sonrisa",
+          "Tus ojitos",
+          "Tu totaso"
+        ],
+        correcta: 2
+      },
+      {
+        pregunta: "¿Qué quiero seguir construyendo contigo?",
+        opciones: [
+          "Más recuerdos bonitos",
+          "Toda mi vida",
+          "Más errores de código"
+        ],
+        correcta: 1
+      },
+      {
+        pregunta: "¿Qué eres para mí?",
+        opciones: [
+          "Una persona muy especial",
+          "Un bug en mi vida",
+          "Una variable sin declarar"
+        ],
+        correcta: 0
+      }
+    ];
+
+    let preguntaActual = 0;
+    let puntaje = 0;
+
+    function mostrarPregunta() {
+      const pregunta = preguntas[preguntaActual];
+
+      document.getElementById("preguntaJuego").textContent = pregunta.pregunta;
+
+      const opcionesDiv = document.getElementById("opcionesJuego");
+      opcionesDiv.innerHTML = "";
+
+      pregunta.opciones.forEach((opcion, index) => {
+        const boton = document.createElement("button");
+        boton.textContent = opcion;
+        boton.onclick = () => responderPregunta(index);
+        opcionesDiv.appendChild(boton);
+      });
+
+      document.getElementById("resultadoJuego").textContent = "";
+    }
+
+    function responderPregunta(indice) {
+      const pregunta = preguntas[preguntaActual];
+
+      if (indice === pregunta.correcta) {
+        puntaje++;
+        document.getElementById("resultadoJuego").textContent = "Correcto, mi amor ❤️";
+      } else {
+        document.getElementById("resultadoJuego").textContent = "Casi, pero igual te quiero ❤️";
+      }
+
+      setTimeout(() => {
+        preguntaActual++;
+
+        if (preguntaActual < preguntas.length) {
+          mostrarPregunta();
+        } else {
+          finalizarJuego();
+        }
+      }, 1200);
+    }
+
+    function finalizarJuego() {
+      document.getElementById("preguntaJuego").textContent = "Terminaste el juego ❤️";
+      document.getElementById("opcionesJuego").innerHTML = "";
+
+      document.getElementById("resultadoJuego").innerHTML = `
+        Sacaste ${puntaje} de ${preguntas.length}.<br>
+        Pero en mi corazón siempre tienes 100/100 ❤️
+      `;
+    }
+
+    /* =========================
+       CARTA ANIMADA
+    ========================== */
+
+    function abrirCarta() {
+      const sobre = document.querySelector(".sobre");
+      sobre.classList.toggle("abierto");
+    }
+
+    /* =========================
+       QR
+    ========================== */
+
+    function generarQR() {
+      const qrImagen = document.getElementById("qrImagen");
+      const qrTexto = document.getElementById("qrTexto");
+
+      const linkCodificado = encodeURIComponent(LINK_DE_LA_PAGINA);
+
+      qrImagen.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${linkCodificado}`;
+      qrTexto.textContent = LINK_DE_LA_PAGINA;
+    }
+
+    /* =========================
+       MÚSICA
+    ========================== */
+
+    function controlarMusica() {
+      const musica = document.getElementById("musicaFondo");
+
+      if (musica.paused) {
+        musica.play();
+      } else {
+        musica.pause();
+      }
+    }
+
+    /* =========================
+       CORAZONES
+    ========================== */
+
+    function crearCorazon() {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.innerHTML = "❤️";
+
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.animationDuration = Math.random() * 3 + 3 + "s";
+      corazon.style.opacity = Math.random();
+
+      document.body.appendChild(corazon);
+
+      setTimeout(() => {
+        corazon.remove();
+      }, 6000);
+    }
+  </script>
+
+</body>
+</html>
